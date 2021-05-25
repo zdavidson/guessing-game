@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,MAAM;CACnB;;AAED,AAAA,UAAU,CAAC;EACT,WAAW,EAAE,IAAI;CAClB;;ACND,AAAA,UAAU,CAAC;EACT,MAAM,EAAE,SAAS;EACjB,KAAK,EAAE,SAAS;EAEhB,OAAO,EAAE,YAAY;CACtB",
+    "sources": [
+        "styles.scss",
+        "_globals.scss",
+        "_guess-box.scss"
+    ],
+    "names": [],
+    "file": "styles.css"
+}
