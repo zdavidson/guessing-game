@@ -98,4 +98,19 @@ h1 {
           transform: translateY(-10%);
   background-color: rgba(23, 162, 184, 0.1);
 }
+
+.yellow-shadow {
+  -webkit-box-shadow: 0px 0.3125rem 0px yellow;
+          box-shadow: 0px 0.3125rem 0px yellow;
+}
+
+.orange-shadow {
+  -webkit-box-shadow: 0px 0.3125rem 0px orange;
+          box-shadow: 0px 0.3125rem 0px orange;
+}
+
+.red-shadow {
+  -webkit-box-shadow: 0px 0.3125rem 0px red;
+          box-shadow: 0px 0.3125rem 0px red;
+}
 /*# sourceMappingURL=styles.css.map */
