@@ -1,7 +1,8 @@
 // Global Variables
 let randomNumber = Math.floor(Math.random() * 100 + 1);
 let input = document.getElementById("user-guess");
-let button = document.getElementById("submit-button");
+let submitButton = document.getElementById("submit-button");
+let playAgainButton = document.getElementById("play-again-button");
 let guessBoxes = document.getElementsByClassName("guess-box");
 let resultHeader = document.getElementById("result");
 
@@ -20,15 +21,16 @@ const compareGuessAndNumber = (guess) => {
 };
 
 // Button Disabler
-const buttonDisabler = () => button.toggleAttribute("disabled");
+const buttonDisabler = () => submitButton.toggleAttribute("disabled");
 
 // Log Guesses to Boxes
 const logGuesses = () => {
-  let currentGuess = `<p>${input.value}</p>`;
+  let currentGuess = input.value;
+  let currentGuessFormatted = `<p class="text-info">${input.value}</p>`;
 
   if (guessBoxes[counter].innerHTML == "") {
     let guessBox = guessBoxes[counter];
-    guessBox.innerHTML = currentGuess;
+    guessBox.innerHTML = currentGuessFormatted;
     counter++;
     console.log("Counter:", counter);
   }
@@ -39,7 +41,7 @@ const logGuesses = () => {
 };
 
 // Call LogGuesses Function
-button.addEventListener("click", () => {
+submitButton.addEventListener("click", () => {
   logGuesses();
 
   if (counter >= document.querySelectorAll(".guess-box").length) {

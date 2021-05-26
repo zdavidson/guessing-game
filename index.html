@@ -11,15 +11,36 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="scss/styles.css" />
     <title>Guessing Game</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Guessing Game</h1>
-      <p>Guess which number I chose, it could be anything from 1 - 100</p>
-      <input id="user-guess" type="text" placeholder="Pick a number" />
-      <button id="submit-button">Guess</button>
+    <div id="main" class="container bg-light">
+      <h1 class="text-info">Guessing Game</h1>
+      <p id="game-instructions" class="text-info">
+        Guess the right number, it could be anything from 1 - 100
+      </p>
+
+      <div class="input-group col-md-6">
+        <input
+          id="user-guess"
+          class="form-control text-info"
+          type="text"
+          placeholder="Pick a number"
+          aria-label="Pick a number"
+          aria-describedby="button-addon2"
+        />
+        <div class="input-group-append">
+          <button type="button" id="submit-button" class="btn btn-outline-info">
+            Guess
+          </button>
+        </div>
+      </div>
 
       <div id="guess-container" class="container">
         <div id="guess-1" class="guess-box border rounded"></div>
@@ -30,8 +51,12 @@
       </div>
 
       <div id="results-container" class="container">
-        <h2 id="result">Good luck!</h2>
+        <h2 id="result" class="text-info">Good luck!</h2>
       </div>
+
+      <button type="button" id="play-again-button" class="btn btn-outline-info">
+        Play Again
+      </button>
     </div>
     <script src="main.js"></script>
   </body>
