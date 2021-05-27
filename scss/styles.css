@@ -4,14 +4,6 @@ body {
   background-color: #17a2b8;
 }
 
-h1 {
-  font-size: 60px;
-  font-weight: 700;
-  letter-spacing: 0.5rem;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
 .container {
   margin-top: 2rem;
 }
@@ -21,6 +13,14 @@ h1 {
   border-radius: 1rem;
   -webkit-box-shadow: 0px 0.625rem 1.25rem rgba(0, 0, 0, 0.15);
           box-shadow: 0px 0.625rem 1.25rem rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
 }
 
 #game-instructions {

@@ -41,7 +41,16 @@ submitButton.addEventListener("click", () => {
 
   if (counter >= document.querySelectorAll(".guess-box").length) {
     submitButtonDisabler();
-    resultHeader.innerHTML = "Better luck next time!";
+
+    if (
+      guessBoxes[counter - 1].innerHTML ==
+      `<p class="text-info">${randomNumber}</p>`
+    ) {
+      submitButtonDisabler();
+      resultHeader.innerHTML = "You won!";
+    } else {
+      resultHeader.innerHTML = "Better luck next time!";
+    }
   }
 });
 
