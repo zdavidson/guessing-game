@@ -1,59 +1,26 @@
-////// VARIABLES
-// Global Variables
-let input = document.getElementById("user-guess");
-let guessBoxes = document.getElementsByClassName("guess-box");
-let resultHeader = document.getElementById("result");
-
-// Buttons
-let submitButton = document.getElementById("submit-button");
-let playAgainButton = document.getElementById("play-again-button");
+import {
+  pickANumber,
+  submitButton,
+  submitButtonDisabler,
+  playAgainButton,
+  input,
+  guessBoxes,
+  resultHeader,
+  clearGuessBoxes,
+  compareGuessAndNumber,
+} from "./utils.js";
 
 let counter = 0;
-
-////// FUNCTIONS
-// Choose a Random Number
-const pickANumber = () => Math.floor(Math.random() * 100 + 1);
 let randomNumber = pickANumber();
+
 console.log("Random Number:", randomNumber);
-
-// Compare Guess and randomNumber
-const compareGuessAndNumber = (guess) => {
-  if (guess == randomNumber) {
-    resultHeader.innerHTML = "You Won!";
-    submitButtonDisabler();
-  } else if (guess < randomNumber) {
-    resultHeader.innerHTML = "Too low, try again!";
-    if (counter < 3) {
-      guessBoxes[counter - 1].classList.add("yellow-shadow");
-    }
-    if (counter > 2 && counter < 5) {
-      guessBoxes[counter - 1].classList.add("orange-shadow");
-    }
-    if (counter > 4) {
-      guessBoxes[counter - 1].classList.add("red-shadow");
-    }
-  } else if (guess > randomNumber) {
-    resultHeader.innerHTML = "Too high, guess again!";
-    if (counter < 3) {
-      guessBoxes[counter - 1].classList.add("yellow-shadow");
-    }
-    if (counter > 2 && counter < 5) {
-      guessBoxes[counter - 1].classList.add("orange-shadow");
-    }
-    if (counter > 4) {
-      guessBoxes[counter - 1].classList.add("red-shadow");
-    }
-  }
-};
-
-// Button Disabler
-const submitButtonDisabler = () => submitButton.toggleAttribute("disabled");
 
 // Log Guesses to Boxes
 const logGuesses = () => {
   let currentGuess = input.value;
   let currentGuessFormatted = `<p class="text-info">${input.value}</p>`;
 
+  // Add guess to box
   if (guessBoxes[counter].innerHTML == "") {
     let guessBox = guessBoxes[counter];
     guessBox.innerHTML = currentGuessFormatted;
@@ -61,22 +28,13 @@ const logGuesses = () => {
     console.log("Counter:", counter);
   }
 
+  // Check Guess
   compareGuessAndNumber(currentGuess);
 
+  // Clear input
   input.value = "";
 };
 
-// Clear Guess Boxes
-const clearGuessBoxes = () => {
-  for (let i = 0; i < counter; i++) {
-    guessBoxes[i].innerHTML = "";
-    guessBoxes[i].classList.remove("yellow-shadow");
-    guessBoxes[i].classList.remove("orange-shadow");
-    guessBoxes[i].classList.remove("red-shadow");
-  }
-};
-
-////// EVENT LISTENERS
 // Call LogGuesses Function
 submitButton.addEventListener("click", () => {
   logGuesses();
@@ -97,6 +55,8 @@ playAgainButton.addEventListener("click", () => {
 
   counter = 0;
 });
+
+export { counter, randomNumber };
 
 ////// TODOS
 // TODO: Enable play again button after 5 guesses or game is won
