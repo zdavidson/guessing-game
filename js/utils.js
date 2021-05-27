@@ -25,34 +25,45 @@ const clearGuessBoxes = () => {
   }
 };
 
+// Add box-shadow
+const addBoxShadow = (counter) => {
+  if (counter < 2) {
+    guessBoxes[counter].classList.add("yellow-shadow");
+    return true;
+  }
+  if (counter > 1 && counter < 4) {
+    guessBoxes[counter].classList.add("orange-shadow");
+  }
+  if (counter > 3) {
+    guessBoxes[counter].classList.add("red-shadow");
+  }
+};
+
 // Compare Guess and randomNumber
 const compareGuessAndNumber = (guess) => {
   if (guess == randomNumber) {
     resultHeader.innerHTML = "You Won!";
-    guessBoxes[counter - 1].classList.add("green-shadow");
+    guessBoxes[counter].classList.add("green-shadow");
     submitButtonDisabler();
   } else if (guess < randomNumber) {
     resultHeader.innerHTML = "Too low, try again!";
-    if (counter < 3) {
-      guessBoxes[counter - 1].classList.add("yellow-shadow");
-    }
-    if (counter > 2 && counter < 5) {
-      guessBoxes[counter - 1].classList.add("orange-shadow");
-    }
-    if (counter > 4) {
-      guessBoxes[counter - 1].classList.add("red-shadow");
-    }
   } else if (guess > randomNumber) {
     resultHeader.innerHTML = "Too high, guess again!";
-    if (counter < 3) {
-      guessBoxes[counter - 1].classList.add("yellow-shadow");
-    }
-    if (counter > 2 && counter < 5) {
-      guessBoxes[counter - 1].classList.add("orange-shadow");
-    }
-    if (counter > 4) {
-      guessBoxes[counter - 1].classList.add("red-shadow");
-    }
+  }
+
+  addBoxShadow(counter);
+};
+
+// If user exhausts all guesses
+const lastBoxAction = () => {
+  if (
+    guessBoxes[counter - 1].innerHTML ==
+    `<p class="text-info">${randomNumber}</p>`
+  ) {
+    submitButtonDisabler();
+    resultHeader.innerHTML = "You Won!";
+  } else {
+    resultHeader.innerHTML = "Better luck next time!";
   }
 };
 
@@ -66,4 +77,5 @@ export {
   input,
   resultHeader,
   compareGuessAndNumber,
+  lastBoxAction,
 };

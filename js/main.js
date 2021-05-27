@@ -8,49 +8,67 @@ import {
   resultHeader,
   clearGuessBoxes,
   compareGuessAndNumber,
+  lastBoxAction,
 } from "./utils.js";
 
 let counter = 0;
 let randomNumber = pickANumber();
 
-console.log("Random Number:", randomNumber);
+// Update Counter
+const updateCounter = () => counter++;
 
 // Log Guesses to Boxes
-const logGuesses = () => {
-  let currentGuess = input.value;
-  let currentGuessFormatted = `<p class="text-info">${input.value}</p>`;
+const logGuesses = (currentGuess) => {
+  let currentGuessFormatted = `<p class="text-info">${currentGuess}</p>`;
 
-  // Add guess to box
   if (guessBoxes[counter].innerHTML == "") {
     let guessBox = guessBoxes[counter];
     guessBox.innerHTML = currentGuessFormatted;
-    counter++;
-    console.log("Counter:", counter);
   }
-
-  // Check Guess
-  compareGuessAndNumber(currentGuess);
-
-  // Clear input
-  input.value = "";
 };
 
-// Call LogGuesses Function
+// Submit Guess
 submitButton.addEventListener("click", () => {
-  logGuesses();
+  // Find the current guess
+  let currentGuess = input.value;
+  let isnum = /^\d+$/.test(currentGuess);
 
+  // Check for edge cases
+  if (!isnum) {
+    resultHeader.innerHTML = "Enter a number";
+    input.value = "";
+    return;
+  }
+
+  if (currentGuess < 1) {
+    resultHeader.innerHTML = "Positive numbers only!";
+    input.value = "";
+    return;
+  }
+
+  if (currentGuess > 100) {
+    resultHeader.innerHTML = "Guess a number from 1 to 100";
+    input.value = "";
+    return;
+  }
+
+  // Log guess to the boxes
+  logGuesses(currentGuess);
+
+  // See if it matches the randomNumber
+  compareGuessAndNumber(currentGuess);
+
+  // Clear the input for the next guess
+  input.value = "";
+
+  // Update the Counter
+  updateCounter();
+  console.log("Counter:", counter);
+
+  // If the user exhausts all their guesses
   if (counter >= document.querySelectorAll(".guess-box").length) {
     submitButtonDisabler();
-
-    if (
-      guessBoxes[counter - 1].innerHTML ==
-      `<p class="text-info">${randomNumber}</p>`
-    ) {
-      submitButtonDisabler();
-      resultHeader.innerHTML = "You won!";
-    } else {
-      resultHeader.innerHTML = "Better luck next time!";
-    }
+    lastBoxAction();
   }
 });
 
@@ -66,18 +84,3 @@ playAgainButton.addEventListener("click", () => {
 });
 
 export { counter, randomNumber };
-
-////// TODOS
-// TODO: Enable play again button after 5 guesses or game is won
-// TODO: Check that input value is a number when converted isNan
-// input.addEventListener("keyup", () => {
-//   const parsed = parseInt(input.value, 10);
-//   if (isNaN(parsed)) {
-//     resultHeader.innerHTML = "Numbers only";
-//   } else {
-//     buttonDisabler();
-//   }
-// });
-
-// TODO: Check for edge cases and provide response (if user sumbission is: lower than 1, higher than 100, not a number)
-// TODO: Add animation of confetti when user wins
