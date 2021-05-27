@@ -63,7 +63,7 @@ const lastBoxAction = () => {
     submitButtonDisabler();
     resultHeader.innerHTML = "You Won!";
   } else {
-    resultHeader.innerHTML = "Better luck next time!";
+    resultHeader.innerHTML = `The number was: ${randomNumber}. Better luck next time!`;
   }
 };
 
