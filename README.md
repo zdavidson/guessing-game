@@ -9,5 +9,6 @@ Live site [here](https://zdavidson.github.io/guessing-game/).
 ## Tech
 
 - JavaScript ES6
+- Bootstrap
 - SASS
 - HTML & CSS
